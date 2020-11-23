@@ -37,7 +37,7 @@ namespace CompanyAssignment.Controllers
             {
                 return BadRequest();
             }
-            return Ok(repository.GetEmployeeByProject(projectid));
+            return Ok(repository.GetEmployeeByProjectId(projectid));
 
         }
         [HttpGet("GetEmployeeById/{id}")]
@@ -69,17 +69,17 @@ namespace CompanyAssignment.Controllers
             {
                 return BadRequest();
             }
-            return Ok(repository.DeleteEmployee(employeeId));
+            return Ok(repository.DeleteEmployeeById(employeeId));
 
         }
-        [HttpDelete("DeleteProjectById/{id}")]
+        [HttpDelete("DeleteProjectById")]
         public IActionResult DeleteProjectById(int projectId)
         {
             if (projectId < 0)
             {
                 return BadRequest();
             }
-            return Ok(repository.DeleteProject(projectId));
+            return Ok(repository.DeleteProjectById(projectId));
 
         }
 

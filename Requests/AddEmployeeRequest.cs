@@ -10,6 +10,7 @@ namespace CompanyAssignment.Requests
         public int Id { get; set; }
         public string EmployeeName { get; set; }
         public string Manager { get; set; }
+      //  public string ProjectName { get; set; }
 
         public int ProjectId { get; set; }
     }

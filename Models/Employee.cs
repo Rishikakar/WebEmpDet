@@ -10,7 +10,7 @@ namespace CompanyAssignment.Models
         public int EmployeeId { get; set; }
         public string EmployeeName { get; set; }
         public string Manager { get; set; }
-        public Project Project { get; set; }
+       // public Project Project { get; set; }
         public int ProjectId { get; set; }
     }
 }

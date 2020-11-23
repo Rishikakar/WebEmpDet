@@ -70,7 +70,7 @@ namespace CompanyAssignment.Repository
             return projects;
         }
 
-        public bool DeleteEmployee(int employeeId)
+        public bool DeleteEmployeeById(int employeeId)
           {
               Employee employee = _db.Employees.Find(employeeId);
         _db.Employees.Remove(employee);
@@ -78,7 +78,7 @@ namespace CompanyAssignment.Repository
             return true;
           }
 
-    public bool DeleteProject(int projectId)
+    public bool DeleteProjectById(int projectId)
     {
         Project project = _db.Projects.Find(projectId);
         _db.Projects.Remove(project);
@@ -86,7 +86,7 @@ namespace CompanyAssignment.Repository
             return true;
           }
 
-    public List<Employee> GetEmployeeByProject(int projectId)
+    public List<Employee> GetEmployeeByProjectId(int projectId)
         {
             List<Employee> employees = new List<Employee>();
             employees = _db.Employees.Where(a => a.ProjectId == projectId).ToList();
@@ -94,14 +94,14 @@ namespace CompanyAssignment.Repository
 
         }
 
-        public List<Project> GetProjects(int projectId)
-        {
-            List<Project> projects = new List<Project>();
-            projects = _db.Projects.ToList();
-            return projects;
+        //public List<Project> GetProjects(int projectId)
+        //{
+        //    List<Project> projects = new List<Project>();
+        //    projects = _db.Projects.ToList();
+        //    return projects;
 
 
-        }
+        //}
 
         public bool UpdateEmployee(AddEmployeeRequest request)
         {
