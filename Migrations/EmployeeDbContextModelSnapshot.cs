@@ -31,12 +31,7 @@ namespace CompanyAssignment.Migrations
                     b.Property<string>("Manager")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProjectId")
-                        .HasColumnType("int");
-
                     b.HasKey("EmployeeId");
-
-                    b.HasIndex("ProjectId");
 
                     b.ToTable("Employees");
                 });
@@ -59,15 +54,55 @@ namespace CompanyAssignment.Migrations
                     b.ToTable("Projects");
                 });
 
-            modelBuilder.Entity("CompanyAssignment.Models.Employee", b =>
+            modelBuilder.Entity("CompanyAssignment.Models.Relationship", b =>
                 {
+                    b.Property<int>("RelationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RelationId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("Relationships");
+                });
+
+            modelBuilder.Entity("CompanyAssignment.Models.Relationship", b =>
+                {
+                    b.HasOne("CompanyAssignment.Models.Employee", "Employee")
+                        .WithMany("Relationships")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("CompanyAssignment.Models.Project", "Project")
-                        .WithMany()
+                        .WithMany("Relationships")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Employee");
+
                     b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("CompanyAssignment.Models.Employee", b =>
+                {
+                    b.Navigation("Relationships");
+                });
+
+            modelBuilder.Entity("CompanyAssignment.Models.Project", b =>
+                {
+                    b.Navigation("Relationships");
                 });
 #pragma warning restore 612, 618
         }

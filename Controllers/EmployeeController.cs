@@ -30,16 +30,21 @@ namespace CompanyAssignment.Controllers
         {
             return Ok(repository.AddProject(data));
         }
-        [HttpGet("GetEmployeeByProjectId")]
-        public IActionResult GetEmployeeByProject(int projectid)
+        [HttpPost("AddRelationship")]
+        public IActionResult AddRelation(RelationshipRequest data)
         {
-            if (projectid < 0)
-            {
-                return BadRequest();
-            }
-            return Ok(repository.GetEmployeeByProjectId(projectid));
-
+            return Ok(repository.AddRelation(data));
         }
+        //[HttpGet("GetEmployeeByProjectId")]
+        //public IActionResult GetEmployeeByProject(int projectid)
+        //{
+        //    if (projectid < 0)
+        //    {
+        //        return BadRequest();
+        //    }
+        //    return Ok(repository.GetEmployeeByProjectId(projectid));
+
+        //}
         [HttpGet("GetEmployeeById/{id}")]
         public IActionResult GetEmployeeById(int id)
         {
@@ -58,6 +63,27 @@ namespace CompanyAssignment.Controllers
                 return BadRequest();
             }
             return Ok(repository.GetProjectById(id));
+
+        }
+        [HttpGet("GetAllProject")]
+        public IActionResult GetAllProjects()
+        {
+           
+            return Ok(repository.GetAllProjects());
+
+        }
+        [HttpGet("GetAllEmployee")]
+        public IActionResult GetAllEmployees()
+        {
+
+            return Ok(repository.GetAllEmployees());
+
+        }
+        [HttpGet("GetAllRelationships")]
+        public IActionResult GetAllRelationships()
+        {
+
+            return Ok(repository.GetAllRelationships());
 
         }
 

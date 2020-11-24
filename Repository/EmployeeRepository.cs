@@ -13,6 +13,8 @@ namespace CompanyAssignment.Repository
         public EmployeeRepository(EmployeeDbContext db)
         {
             this._db = db;
+          
+
         }
 
         public bool AddEmployee(AddEmployeeRequest request)
@@ -23,7 +25,7 @@ namespace CompanyAssignment.Repository
                 Employee employee = new Employee();
                
                 employee.EmployeeName = request.EmployeeName;
-                employee.ProjectId = request.ProjectId;
+               // employee.ProjectId = request.ProjectId;
                 employee.Manager = request.Manager;
 
                 _db.Employees.Add(employee);
@@ -62,7 +64,25 @@ namespace CompanyAssignment.Repository
             List<Employee> employees = new List<Employee>();
             employees = _db.Employees.Where(a => a.EmployeeId == employeeId).ToList();
             return employees;
+
         }
+        public List<Employee> GetAllEmployees()
+        {
+
+
+            return _db.Employees.ToList(); ;
+
+
+        }
+        public List<Relationship> GetAllRelationships()
+        {
+
+
+            return _db.Relationships.ToList(); ;
+
+
+        }
+
         public List<Project> GetProjectById(int projectId)
         {
             List<Project> projects = new List<Project>();
@@ -86,22 +106,22 @@ namespace CompanyAssignment.Repository
             return true;
           }
 
-    public List<Employee> GetEmployeeByProjectId(int projectId)
+        //public List<Employee> GetEmployeeByProjectId(int projectId)
+        //    {
+        //        List<Employee> employees = new List<Employee>();
+        //        employees = _db.Employees.Where(a => a.ProjectId == projectId).ToList();
+        //        return employees;
+
+        //    }
+
+        public List<Project> GetProjects(int projectId)
         {
-            List<Employee> employees = new List<Employee>();
-            employees = _db.Employees.Where(a => a.ProjectId == projectId).ToList();
-            return employees;
+            List<Project> projects = new List<Project>();
+            projects = _db.Projects.ToList();
+            return projects;
+
 
         }
-
-        //public List<Project> GetProjects(int projectId)
-        //{
-        //    List<Project> projects = new List<Project>();
-        //    projects = _db.Projects.ToList();
-        //    return projects;
-
-
-        //}
 
         public bool UpdateEmployee(AddEmployeeRequest request)
         {
@@ -121,6 +141,34 @@ namespace CompanyAssignment.Repository
             }
 
             return false;
+        }
+
+        public bool AddRelation(RelationshipRequest request)
+        {
+            if (request != null)
+            {
+                Relationship relationship = new Relationship();
+
+               relationship.EmployeeId = request.EmployeeId;
+                relationship.ProjectId = request.ProjectId;
+
+
+                _db.Relationships.Add(relationship);
+                _db.SaveChanges();
+
+                return true;
+
+
+            }
+            return false;
+        }
+        public List<Project> GetAllProjects()
+        {
+           
+            
+            return _db.Projects.ToList(); ;
+
+
         }
 
         //public bool UpdateProject(AddProjectRequest request)

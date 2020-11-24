@@ -11,9 +11,10 @@ namespace CompanyAssignment.Repository
     {
         bool AddEmployee(AddEmployeeRequest request);
         bool AddProject(AddProjectRequest request);
-      //  List<Project> GetProjects(int projectId);
+        bool AddRelation(RelationshipRequest request);
+        List<Project> GetProjects(int projectId);
 
-        List<Employee> GetEmployeeByProjectId(int projectId);
+       // List<Employee> GetEmployeeByProjectId(int projectId);
 
         List<Employee> GetEmployeeById(int employeeId);
         List<Project> GetProjectById(int projectId);
@@ -21,5 +22,9 @@ namespace CompanyAssignment.Repository
         //bool UpdateProject(AddProjectRequest request);
         bool DeleteEmployeeById(int employeeId);
         bool DeleteProjectById(int projectId);
+        public List<Project> GetAllProjects();
+        public List<Employee> GetAllEmployees();
+        public List<Relationship> GetAllRelationships();
+
     }
 }
