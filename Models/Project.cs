@@ -10,7 +10,7 @@ namespace CompanyAssignment.Models
         public int ProjectId { get; set; }
         public string ProjectName { get; set; }
         public int ProjectHours { get; set; }
-      //  public virtual ICollection<Relationship> Relationships { get; set; }
+       public virtual ICollection<Relationship> Relationships { get; set; }
 
     }
 }

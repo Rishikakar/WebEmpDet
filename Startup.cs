@@ -32,7 +32,7 @@ namespace CompanyAssignment
             string connectionString = Configuration["ConnectionStrings:dbconnection"];
             services.AddDbContext<EmployeeDbContext>(a => a.UseSqlServer(connectionString));
             services.AddSwaggerGen(a => { a.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "WebEmployee", Version = "v1" }); });
-            services.AddTransient<IEmployeeRepository,EmployeeRepository >();
+            services.AddScoped<IEmployeeRepository,EmployeeRepository >();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

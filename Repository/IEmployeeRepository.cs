@@ -9,9 +9,9 @@ namespace CompanyAssignment.Repository
 {
     public interface IEmployeeRepository
     {
-        bool AddEmployee(AddEmployeeRequest request);
-        bool AddProject(AddProjectRequest request);
-        bool AddRelation(RelationshipRequest request);
+        string AddEmployee(AddEmployeeRequest request);
+        string AddProject(AddProjectRequest request);
+        string AddRelation(RelationshipRequest request);
         List<Project> GetProjects(int projectId);
 
        // List<Employee> GetEmployeeByProjectId(int projectId);
@@ -20,8 +20,8 @@ namespace CompanyAssignment.Repository
         List<Project> GetProjectById(int projectId);
         bool UpdateEmployee(AddEmployeeRequest request);
         //bool UpdateProject(AddProjectRequest request);
-        bool DeleteEmployeeById(int employeeId);
-        bool DeleteProjectById(int projectId);
+        string DeleteEmployeeById(int employeeId);
+        string DeleteProjectById(int projectId);
         public List<Project> GetAllProjects();
         public List<Employee> GetAllEmployees();
         public List<Relationship> GetAllRelationships();

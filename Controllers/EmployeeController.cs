@@ -48,11 +48,12 @@ namespace CompanyAssignment.Controllers
         [HttpGet("GetEmployeeById/{id}")]
         public IActionResult GetEmployeeById(int id)
         {
-            if (id < 0)
+            var result = repository.GetEmployeeById(id);
+            if (result== null)
             {
                 return BadRequest();
             }
-            return Ok(repository.GetEmployeeById(id));
+            return Ok(result);
 
         }
         [HttpGet("GetProjectById/{id}")]

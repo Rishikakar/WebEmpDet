@@ -17,7 +17,7 @@ namespace CompanyAssignment.Repository
 
         }
 
-        public bool AddEmployee(AddEmployeeRequest request)
+        public string AddEmployee(AddEmployeeRequest request)
         {
             if (request != null)
             {
@@ -31,14 +31,14 @@ namespace CompanyAssignment.Repository
                 _db.Employees.Add(employee);
                 _db.SaveChanges();
 
-                return true;
+                return "ONE ROW IS ADDED IN EMPLOYEE TABLE";
 
 
             }
-            return false;
+            return ("COULD NOT BE ADDED");
         }
 
-        public bool AddProject(AddProjectRequest request)
+        public string  AddProject(AddProjectRequest request)
         {
             if (request != null)
             {
@@ -51,26 +51,34 @@ namespace CompanyAssignment.Repository
                 _db.Projects.Add(project);
                 _db.SaveChanges();
 
-                return true;
+                return "ONE ROW IS ADDED IN PROJECT TABLE";
 
 
             }
-            return false;
+            return "COULD NOT BE ADDED";
 
         }
 
         public List<Employee> GetEmployeeById(int employeeId)
         {
-            List<Employee> employees = new List<Employee>();
-            employees = _db.Employees.Where(a => a.EmployeeId == employeeId).ToList();
-            return employees;
+            try
+            {
+                List<Employee> employees = new List<Employee>();
+                employees = _db.Employees.Where(a => a.EmployeeId == employeeId).ToList();
+                return employees;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
 
         }
         public List<Employee> GetAllEmployees()
         {
 
 
-            return _db.Employees.ToList(); ;
+            return _db.Employees.ToList(); 
 
 
         }
@@ -78,7 +86,7 @@ namespace CompanyAssignment.Repository
         {
 
 
-            return _db.Relationships.ToList(); ;
+            return _db.Relationships.ToList(); 
 
 
         }
@@ -90,20 +98,28 @@ namespace CompanyAssignment.Repository
             return projects;
         }
 
-        public bool DeleteEmployeeById(int employeeId)
+        public string DeleteEmployeeById(int employeeId)
           {
-              Employee employee = _db.Employees.Find(employeeId);
-        _db.Employees.Remove(employee);
-              _db.SaveChanges();
-            return true;
+            if (employeeId != null)
+            {
+                Employee employee = _db.Employees.Find(employeeId);
+                _db.Employees.Remove(employee);
+                _db.SaveChanges();
+                return "RECORD DELETED";
+            }
+            return "COULD NOT BE DELETED AS ID NOT FOUND";
           }
 
-    public bool DeleteProjectById(int projectId)
+    public string DeleteProjectById(int projectId)
     {
-        Project project = _db.Projects.Find(projectId);
-        _db.Projects.Remove(project);
-        _db.SaveChanges();
-            return true;
+            if (projectId!=null)
+            {
+                Project project = _db.Projects.Find(projectId);
+                _db.Projects.Remove(project);
+                _db.SaveChanges();
+                return "RECORD DELETED";
+            }
+            return "COULD NOT BE DELETED AS ID NOT FOUND";
           }
 
         //public List<Employee> GetEmployeeByProjectId(int projectId)
@@ -143,7 +159,7 @@ namespace CompanyAssignment.Repository
             return false;
         }
 
-        public bool AddRelation(RelationshipRequest request)
+        public string AddRelation(RelationshipRequest request)
         {
             if (request != null)
             {
@@ -156,17 +172,17 @@ namespace CompanyAssignment.Repository
                 _db.Relationships.Add(relationship);
                 _db.SaveChanges();
 
-                return true;
+                return "ONE ROW HAS BEEN ADDED TO ASSIGNMENT TABLE";
 
 
             }
-            return false;
+            return "COULD NOT BEEN ADDED";
         }
         public List<Project> GetAllProjects()
         {
            
             
-            return _db.Projects.ToList(); ;
+            return _db.Projects.ToList(); 
 
 
         }
